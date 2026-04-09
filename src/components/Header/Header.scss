@@ -1,0 +1,27 @@
+@use '../../sass/variables';
+@use '../../sass/mixins';
+
+.header {
+    height: 64px;
+    background-color: variables.$bg-header;
+    padding: 0 62px;
+
+    &__nav {
+        @include mixins.flex;
+        height: 100%;
+    }
+
+    &__link {
+        @include mixins.flex;
+        height: 100%;
+        padding: 15px;
+        font-size: 14px;
+        text-align: center;
+        color: variables.$white;
+    }
+
+    &__link_active {
+        background-color: variables.$bg-active_link;
+        color: variables.$active-white;
+    }
+}
