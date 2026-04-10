@@ -16,12 +16,21 @@ export default function Card({ content, favoriteCats }: CardProps) {
     const favoriteCat: Cat | undefined = favoriteCats.find(cat => cat.id === content.id);
 
     function changeFavoriteCats() {
+        let copyFavoriteCats = [...favoriteCats];
+        
         if (!favoriteCat) {
             dispatch(addFavoriteCat({ cat: content }));
+            
+            copyFavoriteCats.push(content);
+            localStorage.setItem('FAVORITE_CATS', JSON.stringify(copyFavoriteCats));
         } else {
             dispatch(removeFavoriteCat({ cat: content }));
+
+            copyFavoriteCats = copyFavoriteCats.filter(cat => cat.id !== content.id);
+            localStorage.setItem('FAVORITE_CATS', JSON.stringify(copyFavoriteCats));
         }
     }
+
 
     return(
         <div className="card">

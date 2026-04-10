@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import CardList from "../CardList/CardList";
 import './ContentSection.scss';
 
@@ -31,49 +30,11 @@ export interface Cat {
     categories?: Category[];
 }
 
-export default function ContentSection() {
-    const [cats, setCats] = useState<Cat[] | undefined>();
+interface ContentSectionProps {
+    cats: Cat[];
+}
 
-    
-    useEffect(() => {
-        async function getCats() {
-            const headers = new Headers({
-                "Content-Type": "application/json",
-                "x-api-key": "live_fAieJgMDieBPF8dOzALWr9YUzk4RgBnzbtgoWg4oYqBNHc3btHHTsEIJ6e2ZKFN3"
-            });
-    
-            const requestOptions = {
-                method: 'GET',
-                headers: headers,
-            };
-    
-            const limit = 15;
-            const url = `https://api.thecatapi.com/v1/images/search?limit=${limit}`
-    
-            try {
-                const response = await fetch(url, requestOptions);
-                
-                if (!response.ok) {
-                    throw new Error(`Ошибка: ${response.status}`);
-                }
-
-                const data = await response.json();
-                console.log(data);
-                setCats(data);
-            } catch(e) {
-                console.error(e);
-            }
-    
-        }
-
-        getCats();
-    }, []);
-
-    if (!cats) {
-        // добавить надпись загрузки
-        return '';
-    }
-
+export default function ContentSection({ cats }: ContentSectionProps) {
     return(
         <>
             <section className="content">

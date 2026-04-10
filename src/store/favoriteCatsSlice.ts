@@ -9,8 +9,15 @@ interface FavoriteCatsState {
     favorites: Cat[];
 }
 
+const jsonfavoriteLocalStorage: string | null = localStorage.getItem('FAVORITE_CATS');
+const favoriteCatsLocalStorage: Cat[] | undefined = jsonfavoriteLocalStorage ? JSON.parse(jsonfavoriteLocalStorage) : undefined;
+
 const initialState: FavoriteCatsState = {
     favorites: [],
+}
+
+if (favoriteCatsLocalStorage) {
+    initialState.favorites = favoriteCatsLocalStorage;
 }
 
 const favoriteCatsSlice = createSlice({
