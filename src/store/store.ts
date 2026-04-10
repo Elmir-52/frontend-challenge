@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import favoriteCatsReducer from "./FavoriteCatsSlice";
 
 const store = configureStore({
     reducer: {
-
+        favoriteCats: favoriteCatsReducer,
     }
 });
 
