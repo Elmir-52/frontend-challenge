@@ -1,0 +1,7 @@
+@use '../../sass/mixins';
+
+.content {
+    @include mixins.flex(column);
+    width: 100%;
+    padding: 0 62px;
+}

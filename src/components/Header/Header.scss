@@ -5,6 +5,7 @@
     height: 64px;
     background-color: variables.$bg-header;
     padding: 0 62px;
+    margin-bottom: 48px;
 
     &__nav {
         @include mixins.flex;
@@ -18,10 +19,20 @@
         font-size: 14px;
         text-align: center;
         color: variables.$white;
+
+        &:focus {
+            outline: none;
+        }
     }
 
     &__link_active {
         background-color: variables.$bg-active_link;
         color: variables.$active-white;
+    }
+}
+
+@media (max-width: 420px) {
+    .header {
+        padding: 0 20px;
     }
 }
