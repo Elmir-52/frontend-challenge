@@ -34,7 +34,7 @@ export default function Card({ content, favoriteCats }: CardProps) {
 
     return(
         <div className="card">
-            <img className="card__image" src={content.url} alt="картинка кошки" />
+            <img loading="lazy" className="card__image" src={content.url} alt="картинка кошки" />
             <div className="card__wrapper">
                 <button className="card__button" onClick={changeFavoriteCats}>
                     <img src={favoriteCat ? `${favorite}` : `${favoriteBorder}`} alt="картинка лайка" />
