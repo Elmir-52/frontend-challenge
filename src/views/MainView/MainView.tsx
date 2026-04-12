@@ -66,7 +66,7 @@ export default function MainView() {
         <>
             <Header />
             <CardsList cats={cats} />
-            <div style={{ textAlign: 'center', marginBottom: '40px' }} ref={loaderRef}>...загружаем котиков...</div>
+            <div className="loader" ref={loaderRef}>...загружаем котиков...</div>
         </>
     )
 }
