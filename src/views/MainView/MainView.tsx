@@ -3,7 +3,8 @@ import Header from "../../components/Header/Header";
 import CardsList from "../../components/CardList/CardList";
 import type { Cat } from "../../types/cat.types";
 
-const catApiKey: string = import.meta.env.VITE_CAT_API_KEY;
+const CAT_API_KEY: string = import.meta.env.VITE_CAT_API_KEY;
+const LIMIT = 15;
 
 export default function MainView() {
     const [cats, setCats] = useState<Cat[]>([]);
@@ -19,7 +20,7 @@ export default function MainView() {
 
             const headers = new Headers({
                 "Content-Type": "application/json",
-                "x-api-key": catApiKey,
+                "x-api-key": CAT_API_KEY,
             });
     
             const requestOptions = {
@@ -27,8 +28,7 @@ export default function MainView() {
                 headers: headers,
             };
     
-            const limit = 15;
-            const url = `https://api.thecatapi.com/v1/images/search?limit=${limit}`
+            const url = `https://api.thecatapi.com/v1/images/search?limit=${LIMIT}`
     
             try {
                 const response = await fetch(url, requestOptions);
