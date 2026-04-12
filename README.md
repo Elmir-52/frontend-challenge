@@ -16,9 +16,15 @@
 - Добавление котиков в избранные
 - Просмотр понравивишихся котиков
 
+## Живая демонстрация
+
+1. Включите VPN
+2. Откройте сайт по ссылке: https://elmir-52.github.io/frontend-challenge/
+
 ## Установка
 
 1. Клонируйте репозиторий: git clone https://github.com/Elmir-52/frontend-challenge.git
+2. Перейдите в директорию проекта: cd frontend-challenge
 2. Установите зависимости: npm install
 
 ## Использование
