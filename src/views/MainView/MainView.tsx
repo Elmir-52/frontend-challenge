@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import ContentSection, { type Cat } from "../../components/ContentSection/ContentSection";
 import Header from "../../components/Header/Header";
+import CardsList from "../../components/CardList/CardList";
+import type { Cat } from "../../types/cat.types";
+
+const catApiKey: string = import.meta.env.VITE_CAT_API_KEY;
 
 export default function MainView() {
     const [cats, setCats] = useState<Cat[]>([]);
@@ -16,7 +19,7 @@ export default function MainView() {
 
             const headers = new Headers({
                 "Content-Type": "application/json",
-                "x-api-key": "live_fAieJgMDieBPF8dOzALWr9YUzk4RgBnzbtgoWg4oYqBNHc3btHHTsEIJ6e2ZKFN3"
+                "x-api-key": catApiKey,
             });
     
             const requestOptions = {
@@ -49,7 +52,6 @@ export default function MainView() {
         const observer = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting) {
                 getCats();
-                console.log(entries);
             }
         });
 
@@ -63,7 +65,7 @@ export default function MainView() {
     return(
         <>
             <Header />
-            <ContentSection cats={cats} />
+            <CardsList cats={cats} />
             <div style={{ textAlign: 'center', marginBottom: '40px' }} ref={loaderRef}>...загружаем котиков...</div>
         </>
     )

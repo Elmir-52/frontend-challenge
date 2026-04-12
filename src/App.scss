@@ -1,0 +1,20 @@
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 225px);
+    justify-content: space-between;
+    gap: 48px;
+    margin: 0 62px;
+    margin-bottom: 48px;
+}
+
+@media (max-width: 620px) {
+    .card-list {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 420px) {
+    .card-list {
+        margin: 0;
+    }
+}

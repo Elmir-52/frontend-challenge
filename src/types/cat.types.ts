@@ -1,6 +1,3 @@
-import CardList from "../CardList/CardList";
-import './ContentSection.scss';
-
 interface Breed {
     weight:{
         imperial: string;
@@ -28,18 +25,4 @@ export interface Cat {
     height: number;
     breeds?: Breed[];
     categories?: Category[];
-}
-
-interface ContentSectionProps {
-    cats: Cat[];
-}
-
-export default function ContentSection({ cats }: ContentSectionProps) {
-    return(
-        <>
-            <section className="content">
-                <CardList content={cats} />
-            </section>
-        </>
-    );
 }

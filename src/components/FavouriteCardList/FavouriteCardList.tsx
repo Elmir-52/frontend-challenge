@@ -1,21 +1,16 @@
 import { useFavorites } from "../../hooks/useFavorites";
-import type { Cat } from "../../types/cat.types";
 import Card from "../Card/Card";
 
-interface CardListProps {
-    cats: Cat[];
-}
-
-export default function CardsList({ cats }: CardListProps) {
-    const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+export default function FavoriteCardsList() {
+    const { favorites, addFavorite, removeFavorite } = useFavorites();
 
     return(
         <div className="card-list">
-            {cats.map(cat => 
+            {favorites.map(cat =>
                 <Card 
                     key={cat.id} 
                     cat={cat} 
-                    isFavorite={isFavorite(cat.id)} 
+                    isFavorite={true} 
                     onAdd={addFavorite}
                     onRemove={removeFavorite}
                 />

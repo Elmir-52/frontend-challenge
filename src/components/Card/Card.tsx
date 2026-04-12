@@ -1,45 +1,35 @@
-import type { Cat } from "../ContentSection/ContentSection";
+import type { Cat } from "../../types/cat.types";
 import favorite from '/favorite.svg';
 import favoriteBorder from '/favorite_border.svg';
 import './Card.scss';
-import { addFavoriteCat, removeFavoriteCat } from "../../store/favoriteCatsSlice";
-import { useAppDispatch } from "../../hook";
+import { memo } from "react";
 
 interface CardProps {
-    content: Cat;
-    favoriteCats: Cat[];
+    cat: Cat;
+    isFavorite: boolean;
+    onAdd: (cat: Cat) => void;
+    onRemove: (catId: string) => void;
 }
 
-export default function Card({ content, favoriteCats }: CardProps) {
-    const dispatch = useAppDispatch();
-
-    const favoriteCat: Cat | undefined = favoriteCats.find(cat => cat.id === content.id);
-
+function Card({ cat, isFavorite, onAdd, onRemove }: CardProps) {
     function changeFavoriteCats() {
-        let copyFavoriteCats = [...favoriteCats];
-        
-        if (!favoriteCat) {
-            dispatch(addFavoriteCat({ cat: content }));
-            
-            copyFavoriteCats.push(content);
-            localStorage.setItem('FAVORITE_CATS', JSON.stringify(copyFavoriteCats));
+        if (isFavorite) {
+            onRemove(cat.id);
         } else {
-            dispatch(removeFavoriteCat({ cat: content }));
-
-            copyFavoriteCats = copyFavoriteCats.filter(cat => cat.id !== content.id);
-            localStorage.setItem('FAVORITE_CATS', JSON.stringify(copyFavoriteCats));
+            onAdd(cat);
         }
     }
 
-
     return(
         <div className="card">
-            <img loading="lazy" className="card__image" src={content.url} alt="картинка кошки" />
+            <img loading="lazy" className="card__image" src={cat.url} alt="картинка кошки" />
             <div className="card__wrapper">
                 <button className="card__button" onClick={changeFavoriteCats}>
-                    <img src={favoriteCat ? `${favorite}` : `${favoriteBorder}`} alt="картинка лайка" />
+                    <img src={isFavorite ? `${favorite}` : `${favoriteBorder}`} alt="картинка лайка" />
                 </button>
             </div>
         </div>
     )
 }
+
+export default memo(Card);
