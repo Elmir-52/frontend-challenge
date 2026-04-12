@@ -40,9 +40,10 @@ export default function MainView() {
                 const data = await response.json();
 
                 setCats(prev => [...prev, ...data]);
-                setLoading(false);
             } catch(e) {
                 console.error(e);
+            } finally {
+                setLoading(false);  
             }
     
         }
